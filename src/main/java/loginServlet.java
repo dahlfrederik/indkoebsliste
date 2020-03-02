@@ -7,7 +7,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 
 @WebServlet(name = "loginServlet", urlPatterns = {"/loginServlet"})
 public class loginServlet extends HttpServlet {
@@ -28,6 +30,12 @@ public class loginServlet extends HttpServlet {
             servletContext.setAttribute("brugerMap", brugerMap);
         }
 
+        if( (  (Set<String>)servletContext.getAttribute("aktiveBrugere"))==null){
+            Set<String> aktiveBrugere = new HashSet<>();
+            servletContext.setAttribute("aktiveBrugere",aktiveBrugere);
+
+        }
+
         if(!((Map<String, String>)  servletContext.getAttribute("brugerMap") ).containsKey(brugernavn) ) {
             //TODO gå til loginside
             request.setAttribute("besked", "Brugernavn findes ikke, opret ny bruger her");
@@ -38,12 +46,19 @@ public class loginServlet extends HttpServlet {
             if(brugernavn.equalsIgnoreCase("admin")){
                 request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request,response);
             }
-            session.setAttribute("besked", "du er logget ind som brugeren: " + brugernavn);
-            request.getRequestDispatcher("WEB-INF/HuskeListe.jsp").forward(request,response);
+
+            if( ! (  (Set<String>)servletContext.getAttribute("aktiveBrugere")).contains(brugernavn)){
+                ((Set<String>) servletContext.getAttribute("aktiveBrugere")).add(brugernavn);
+
+                session.setAttribute("besked", "du er logget ind som brugeren: " + brugernavn);
+                request.getRequestDispatcher("WEB-INF/HuskeListe.jsp").forward(request,response);
+            }
+
+
         }
 
         // TODO gå til login indexside
-        request.setAttribute("besked", "Dit kodeord var forkert, prøv igen");
+        request.setAttribute("besked", "Der gik noget galt, prøv igen");
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
