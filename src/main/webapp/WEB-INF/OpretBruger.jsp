@@ -12,7 +12,7 @@
 </head>
 <body>
 
-<h1>Her kan du registreres som bruger.</h1>
+<h1>Her skal du registrere dig inden du kan lave indkøb i min webshop </h1>
 <br>
 <h2>${requestScope.besked}</h2>
 <br>

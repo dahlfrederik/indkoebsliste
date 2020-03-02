@@ -8,11 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Huskeliste</title>
+    <title>Indkøbskurv</title>
 </head>
 <body>
-<h1>Din huskeliste</h1>
-<h2> Du er logget ind og har nu adgang til din huskeliste</h2>
+<h1>Din indkøbskurv</h1>
+<h2> Du er klar til at tilføje emner til din indkøbskurv </h2>
 
 
 
