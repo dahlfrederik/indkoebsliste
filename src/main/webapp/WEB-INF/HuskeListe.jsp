@@ -11,6 +11,9 @@
     <title>Indkøbskurv</title>
 </head>
 <body>
+${sessionScope.besked}
+
+
 <h1>Din indkøbskurv</h1>
 <h2> Du er klar til at tilføje emner til din indkøbskurv </h2>
 
