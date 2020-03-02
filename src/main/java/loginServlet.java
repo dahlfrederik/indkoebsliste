@@ -17,31 +17,29 @@ public class loginServlet extends HttpServlet {
         String navn = request.getParameter("brugernavn");
         String kodeord = request.getParameter("kodeord ");
 
-
-        if(servletContext.getAttribute("brugerMap")==null) {
-
+        if (servletContext.getAttribute("brugerMap") == null) {
             Map<String, String> brugerMap = new HashMap<>();
 
-            brugerMap.put("test","test");
+            brugerMap.put("test", "test");
+            brugerMap.put("admin", "1234");
 
             servletContext.setAttribute("brugerMap", brugerMap);
         }
 
-        if(!((Map<String,String>) servletContext.getAttribute("brugerMap")).containsKey(navn)  ){
-            request.setAttribute("besked","Opret dig som bruger her");
-            request.getRequestDispatcher("WEB-INF/OpretBruger.jsp").forward(request,response);
+        if (!((Map<String, String>) servletContext.getAttribute("brugerMap")).containsKey(navn)) {
+            request.setAttribute("besked", "Opret dig som bruger her");
+            request.getRequestDispatcher("WEB-INF/OpretBruger.jsp").forward(request, response);
         }
 
-
-        if( ((Map<String,String>) servletContext.getAttribute("brugerMap")).get(navn).equalsIgnoreCase(kodeord)){
-            //TODO gå til huskeliste
-
-            request.getRequestDispatcher("WEB-INF/HuskeListe.jsp").forward(request,response);
+       if(((Map<String, String>)  servletContext.getAttribute("brugerMap") ).get(navn).equalsIgnoreCase(kodeord)) {
+            if(navn.equalsIgnoreCase("admin")){
+                request.getRequestDispatcher("WEB-INF/admin.jsp").forward(request,response);
+            }
+            request.getRequestDispatcher("WEB-INF/HuskeListe.jsp").forward(request, response);
         }
 
-        //TODO gå til index siden
-        request.setAttribute("besked","Din kode var forkert");
-        request.getRequestDispatcher("index.jsp").forward(request,response);
+           request.setAttribute("besked", "Din kode var forkert");
+           request.getRequestDispatcher("index.jsp").forward(request, response);
 
     }
 

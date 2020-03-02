@@ -23,7 +23,7 @@
     <input type="text" id="fname" name="brugernavn" ><br>
     <label for="lname">Kodeord:</label><br>
     <input type="text" id="lname" name="kodeord" ><br><br>
-    <input type="submit" value="Login">
+    <input type="submit" value="Opret">
 </form>
 
 

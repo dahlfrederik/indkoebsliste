@@ -13,8 +13,6 @@
 <body>
 <h1> Velkommen til din online indkøbsliste </h1>
 <br>
-<br>
-<br>
 
 ${requestScope.besked}
 <br>
