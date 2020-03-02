@@ -36,6 +36,9 @@ ${sessionScope.besked}
 
 </c:forEach>
 
+<form action="LogOutServlet" method="post">
+    <input type="submit" value="Logout">
+</form>
 
 </body>
 </html>
